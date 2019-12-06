@@ -27,8 +27,10 @@ $(document).ready(function() {
 	});
 
 	function goFish() {
-		guessedLetter = generateNextGuess().toUpperCase();
-		$("#computerGuess").html("Do you have any " + guessedLetter.toUpperCase() + "'s?");
+		if (!isEndGame()) {
+			guessedLetter = generateNextGuess().toUpperCase();
+			$("#computerGuess").html("Do you have any " + guessedLetter.toUpperCase() + "'s?");
+		}
 	}
 
 	$("#goFish").click(goFish);
@@ -42,4 +44,9 @@ $(document).ready(function() {
 		}
 		insertLetterIntoKnownLetters(guessedLetter, targetNum);
 	});
+
+	function endGame() {
+		var numBlanksLeft = $('#guessingZone span').filter(function(index, element) { return element.innerHTML === " _ "; }).length;
+		return numBlanksLeft == 0 || guessedLetter.length > 1;
+	}		
 });
