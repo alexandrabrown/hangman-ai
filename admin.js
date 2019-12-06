@@ -24,6 +24,8 @@ $(document).ready(function() {
 		$("#hangmanGame").show();
 		initCandidateSet(numLetters);
 		if (checkGameOver()) {
+			// Length of word is too long
+			location.reload();
 			return;
 		}
 
