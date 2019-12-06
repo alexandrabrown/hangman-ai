@@ -24,6 +24,11 @@ function appendHyphenKnownLetters() {
     knownLetters += CHAR_HYPEN;
 }
 
+function insertLetterIntoKnownLetters(letter, index) {
+    letter = letter.toLowerCase()
+    knownLetters = knownLetters.substr(0, index) + letter + knownLetters.substr(index + 1);
+}
+
 function initCandidateSet(wordLength) {
     for (wordIndex in dictionary) {
         var word = dictionary[wordIndex].trim();

@@ -38,5 +38,6 @@ $(document).ready(function() {
 		var targetNum = target.attr('id').substring('letterSpace'.length);
 		console.log("space #" + targetNum + " clicked");
 		target.html(" " + guessedLetter + " ")
+		insertLetterIntoKnownLetters(guessedLetter, targetNum);
 	});
 });
