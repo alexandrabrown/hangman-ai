@@ -4,6 +4,8 @@ Hangman AI where the next guess is the best letter from the known list of words 
 # Requirements
 https://github.com/dwyl/english-words - words_alpha.txt
 
+https://nodejs.org/en/download/ - Node.js 
+
 $ npm install connect serve-static
 
 $ node server.js
