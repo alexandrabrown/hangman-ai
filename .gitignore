@@ -1,2 +1,4 @@
 
 words_alpha.txt
+*.json
+node_modules/*
