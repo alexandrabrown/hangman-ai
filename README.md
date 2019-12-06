@@ -7,3 +7,5 @@ https://github.com/dwyl/english-words - words_alpha.txt
 $ npm install connect serve-static
 
 $ node server.js
+
+http://localhost:8080/index.html
