@@ -49,9 +49,19 @@ function generateNewCandidateSet() {
             var knownLetter = knownLetters[index];
             // candidateWord and knownLetters strings should be the same length
 
+
+            // If we've already guessed it and it's not in our knownLetters
+            if (guessedLetters.includes(candidateLetter) && !knownLetters.includes(candidateLetter)) {
+                allLettersMatch = false;
+                break;
+            }
+
+            // Ignore hyphens - good, keep going
             if (knownLetter == CHAR_HYPEN) {
                 continue;
             }
+
+            // If letters don't match
             if (candidateLetter != knownLetter) {
                 allLettersMatch = false;
                 break;
@@ -67,11 +77,14 @@ function generateNewCandidateSet() {
 }
 
 function generateNextGuess() {
+    if (candidateSet.length == 1) {
+        return candidateSet[0];
+    }
     generateNewCandidateSet();
 	var letterFrequencyMap = {};
 	remainingLetters.split("").forEach(function(letter) {
 		letterFrequencyMap[letter] = 0;
-		dictionary.forEach(function(word) {
+		candidateSet.forEach(function(word) {
 			if (word.includes(letter)) {
 				letterFrequencyMap[letter]++;
 			}
