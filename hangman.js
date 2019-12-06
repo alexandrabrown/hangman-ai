@@ -18,8 +18,9 @@ function readFile(file) {
     });
 }
 
-function candidateSet(wordLength) {
-    for (word in dictionary) {
+function initCandidateSet(wordLength) {
+    for (wordIndex in dictionary) {
+        var word = dictionary[wordIndex].trim();
         if (word.length == wordLength) {
             candidateSet.push(word);
         }
@@ -28,7 +29,8 @@ function candidateSet(wordLength) {
 
 function generateNewCandidateSet(knownLetters) {
     var newCandidateSet = [];
-    for (candidateWord in candidateSet) {
+    for (candidateWordIndex in candidateSet) {
+        var candidateWord = candidateSet[candidateWordIndex];
         var allLettersMatch = true;
         for (index = 0; index < candidateWord.length; ++index) {
             var candidateLetter = candidateWord[index];
