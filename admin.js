@@ -2,6 +2,7 @@ $(document).ready(function() {
 	$("#hangmanGame").hide();
 	$("#goFish").hide();
 	var guessedLetter = '_';
+	var gameOver = false;
 
 	$("#submitLetterCount").click(function() {
 		var numLetters = $("#letterCount").val();
@@ -27,6 +28,12 @@ $(document).ready(function() {
 	});
 
 	function goFish() {
+		if (!gameOver) {
+			gameOver = computerWins();
+		}
+		if (gameOver) return;
+
+		
 		if (numberOfLettersSelected == 0) {
 			$("#part" + nextPartNum).show();
 			nextPartNum++;
@@ -38,6 +45,10 @@ $(document).ready(function() {
 	$("#goFish").click(goFish);
 
 	$("#guessingZone").delegate("span", "click", function(event) {
+		if (!gameOver) {
+			gameOver = computerWins();
+		}
+		if (gameOver) return;
 		var target = $(event.target);
 		var targetNum = target.attr('id').substring('letterSpace'.length);
 		console.log("space #" + targetNum + " clicked");
@@ -48,8 +59,19 @@ $(document).ready(function() {
 		numberOfLettersSelected++;
 	});
 
-	function endGame() {
-		var numBlanksLeft = $('#guessingZone span').filter(function(index, element) { return element.innerHTML === " _ "; }).length;
-		return numBlanksLeft == 0 || guessedLetter.length > 1;
-	}		
+	function playerWins() {
+		alert('You Win :D Good luck against V2.0');
+	}
+
+	function computerWins() {
+		var numBlanksLeft = $('#guessingZone span').filter(function(index, element) { 
+			return element.innerHTML === " _ "; 
+		}).length;
+		if (numBlanksLeft == 0 || guessedLetter.length > 1) {
+			gameOver = true;
+			alert('YOU LOSE! Get better, scrub!');
+			return true;
+		}
+		return false;
+	}
 });
