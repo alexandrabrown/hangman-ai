@@ -25,6 +25,7 @@ function appendHyphenKnownLetters() {
 }
 
 function insertLetterIntoKnownLetters(letter, index) {
+    var index = parseInt(index);
     letter = letter.toLowerCase()
     knownLetters = knownLetters.substr(0, index) + letter + knownLetters.substr(index + 1);
 }

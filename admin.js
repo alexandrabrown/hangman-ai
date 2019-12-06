@@ -40,5 +40,6 @@ $(document).ready(function() {
 		if (target.html() === " _ ") {
 			target.html(" " + guessedLetter + " ")
 		}
+		insertLetterIntoKnownLetters(guessedLetter, targetNum);
 	});
 });
