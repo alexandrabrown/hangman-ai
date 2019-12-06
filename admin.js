@@ -37,6 +37,8 @@ $(document).ready(function() {
 		var target = $(event.target);
 		var targetNum = target.attr('id').substring('letterSpace'.length);
 		console.log("space #" + targetNum + " clicked");
-		target.html(" " + guessedLetter + " ")
+		if (target.html() === " _ ") {
+			target.html(" " + guessedLetter + " ")
+		}
 	});
 });
