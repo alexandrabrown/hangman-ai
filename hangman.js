@@ -2,7 +2,9 @@ var dictionary = [];
 var candidateSet = [];
 var alphabet = 'abcdefghijklmnopqrstuvwxyz';
 var knownLetters = "ele-----";
+var guessedLetters = [];
 var CHAR_HYPEN = '-';
+var remainingLetters = alphabet;
 
 $(document).ready(function() {
     storeDictionary();
@@ -54,3 +56,25 @@ function generateNewCandidateSet(knownLetters) {
     console.log(candidateSet);
 }
 
+function generateNextGuess(candidateSet) {
+	var letterFrequencyMap = {};
+	remainingLetters.split("").forEach(function(letter) {
+		letterFrequencyMap[letter] = 0;
+		dictionary.forEach(function(word) {
+			if (word.includes(letter)) {
+				letterFrequencyMap[letter]++;
+			}
+		});
+	});
+	var currentMaxValue = 0;
+	var currentMaxLetter = 'a';
+	remainingLetters.split("").forEach(function (letter) {
+		if (letterFrequencyMap[letter] > currentMaxValue) {
+			currentMaxValue = letterFrequencyMap[letter];
+			currentMaxLetter = letter;
+		}
+	});
+	guessedLetters.push(currentMaxLetter);
+	remainingLetters = remainingLetters.replace(currentMaxLetter, "");
+	return currentMaxLetter;
+}
