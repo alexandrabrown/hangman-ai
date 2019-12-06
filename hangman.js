@@ -21,7 +21,7 @@ function readFile(file) {
 }
 
 function appendHyphenKnownLetters() {
-    knownLetters.push(CHAR_HYPEN);
+    knownLetters += CHAR_HYPEN;
 }
 
 function initCandidateSet(wordLength) {
