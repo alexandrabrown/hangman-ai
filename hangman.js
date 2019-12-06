@@ -1,7 +1,8 @@
 var dictionary = [];
 var candidateSet = [];
 var alphabet = 'abcdefghijklmnopqrstuvwxyz';
-var knownLetters = ['e' => [0, 2], 'l' => [1] ]; //elephant
+var knownLetters = "ele-----";
+var CHAR_HYPEN = '-';
 
 $(document).ready(function() {
     storeDictionary();
@@ -19,23 +20,35 @@ function readFile(file) {
 
 function candidateSet(wordLength) {
     for (word in dictionary) {
-        if (word == wordLength) {
+        if (word.length == wordLength) {
             candidateSet.push(word);
         }
     }
 }
 
 function generateNewCandidateSet(knownLetters) {
-    for (letter in knownLetters) {
-        for (indices in knownLetters[letter]) {
+    var newCandidateSet = [];
+    for (candidateWord in candidateSet) {
+        var allLettersMatch = true;
+        for (index = 0; index < candidateWord.length; ++index) {
+            var candidateLetter = candidateWord[index];
+            var knownLetter = knownLetters[index];
+            // candidateWord and knownLetters strings should be the same length
 
+            if (knownLetter == CHAR_HYPEN) {
+                continue;
+            }
+            if (candidateLetter != knownLetter) {
+                allLettersMatch = false;
+                break;
+            }
+        }
+        if (allLettersMatch) {
+            newCandidateSet.push(candidateWord);
         }
 
     }
-    for (word in candidateSet) {
-        for (letter in word) {
-
-        }
-    }
+    candidateSet = newCandidateSet;
+    console.log(candidateSet);
 }
 
