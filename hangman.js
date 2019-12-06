@@ -5,6 +5,8 @@ var knownLetters = "";
 var guessedLetters = [];
 var CHAR_HYPEN = '-';
 var remainingLetters = alphabet;
+var numberOfLettersSelected = null;
+var nextPartNum = 1;
 
 $(document).ready(function() {
     storeDictionary();
@@ -80,6 +82,7 @@ function generateNextGuess() {
     if (candidateSet.length == 1) {
         return candidateSet[0];
     }
+    numberOfLettersSelected = 0;
     generateNewCandidateSet();
 	var letterFrequencyMap = {};
 	remainingLetters.split("").forEach(function(letter) {
