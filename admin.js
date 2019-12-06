@@ -23,6 +23,10 @@ $(document).ready(function() {
 
 		$("#hangmanGame").show();
 		initCandidateSet(numLetters);
+		if (checkGameOver()) {
+			return;
+		}
+
 		goFish();
 		$("#goFish").show();
 	});
@@ -30,11 +34,10 @@ $(document).ready(function() {
 	$("#goFish").click(goFish);
 
 	$("#guessingZone").delegate("span", "click", function(event) {
-		if (!gameOver) {
-			gameOver = computerWins();
-			gameOver = gameOver || playerWins();
+		if (checkGameOver()) {
+			return;
 		}
-		if (gameOver) return;
+
 		var target = $(event.target);
 		var targetNum = target.attr('id').substring('letterSpace'.length);
 		console.log("space #" + targetNum + " clicked");
@@ -46,17 +49,14 @@ $(document).ready(function() {
 	});
 
 	function goFish() {
-		if (!gameOver) {
-			gameOver = computerWins();
-			gameOver = gameOver || playerWins();
+		if (checkGameOver()) {
+			return;
 		}
-		if (gameOver) return;
-
 		
 		if (numberOfLettersSelected == 0) {
 			addPart();
 		}
-		
+
 		guessedLetter = generateNextGuess().toUpperCase();
 
 		// Found a word to guess, not a letter
@@ -83,6 +83,15 @@ $(document).ready(function() {
 	function addPart() {
 		$("#part" + nextPartNum).show();
 			nextPartNum++;
+	}
+
+	function checkGameOver() {
+		if (!gameOver) {
+			gameOver = computerWins();
+			gameOver = gameOver || playerWins();
+			return gameOver;
+		}
+		return false;
 	}
 
 	function playerWins() {
