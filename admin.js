@@ -30,7 +30,7 @@ $(document).ready(function() {
 	function goFish() {
 		if (!gameOver) {
 			gameOver = computerWins();
-			gameOver = playerWins();
+			gameOver = gameOver || playerWins();
 		}
 		if (gameOver) return;
 
@@ -48,6 +48,7 @@ $(document).ready(function() {
 	$("#guessingZone").delegate("span", "click", function(event) {
 		if (!gameOver) {
 			gameOver = computerWins();
+			gameOver = gameOver || playerWins();
 		}
 		if (gameOver) return;
 		var target = $(event.target);
