@@ -18,7 +18,7 @@ function readFile(file) {
     });
 }
 
-function candidateSet(wordLength) {
+function createCandidateSet(wordLength) {
     for (word in dictionary) {
         if (word.length == wordLength) {
             candidateSet.push(word);
@@ -51,4 +51,26 @@ function generateNewCandidateSet(knownLetters) {
     candidateSet = newCandidateSet;
     console.log(candidateSet);
 }
+
+function generateFirstGuess(candidateSet) {
+	var letterFrequencyMap = {};
+	for (letter in alphabet) {
+		letterFrequencyMap[letter] = 0;
+		for(word in dictionary) {
+			if (word.includes(letter)) {
+				letterFrequencyMap[letter]++;
+			}
+		}
+	}
+	var currentMaxValue = 0;
+	var currentMaxLetter = 'a';
+	for(letter in alphabet) {
+		if (letterFrequencyMap[letter] > currentMaxValue) {
+			currentMaxValue = letterFrequencyMap[letter];
+			currentMaxLetter = letter;
+		}
+	}
+	return currentMaxLetter;
+}
+
 
