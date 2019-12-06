@@ -47,4 +47,9 @@ $(document).ready(function() {
 		insertLetterIntoKnownLetters(guessedLetter, targetNum);
 		numberOfLettersSelected++;
 	});
+
+	function endGame() {
+		var numBlanksLeft = $('#guessingZone span').filter(function(index, element) { return element.innerHTML === " _ "; }).length;
+		return numBlanksLeft == 0 || guessedLetter.length > 1;
+	}		
 });
