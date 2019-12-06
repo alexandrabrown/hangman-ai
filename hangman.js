@@ -7,7 +7,7 @@ var CHAR_HYPEN = '-';
 var remainingLetters = alphabet;
 var numberOfLettersSelected = null;
 var nextPartNum = 1;
-var MAX_NUM_PARTS = 5;
+var MAX_NUM_PARTS = 6;
 
 $(document).ready(function() {
     storeDictionary();
