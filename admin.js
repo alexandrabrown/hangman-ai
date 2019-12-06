@@ -27,22 +27,6 @@ $(document).ready(function() {
 		$("#goFish").show();
 	});
 
-	function goFish() {
-		if (!gameOver) {
-			gameOver = computerWins();
-			gameOver = gameOver || playerWins();
-		}
-		if (gameOver) return;
-
-		
-		if (numberOfLettersSelected == 0) {
-			$("#part" + nextPartNum).show();
-			nextPartNum++;
-		}
-		guessedLetter = generateNextGuess().toUpperCase();
-		$("#computerGuess").html("Do you have any " + guessedLetter.toUpperCase() + "'s?");
-	}
-
 	$("#goFish").click(goFish);
 
 	$("#guessingZone").delegate("span", "click", function(event) {
@@ -60,6 +44,46 @@ $(document).ready(function() {
 		insertLetterIntoKnownLetters(guessedLetter, targetNum);
 		numberOfLettersSelected++;
 	});
+
+	function goFish() {
+		if (!gameOver) {
+			gameOver = computerWins();
+			gameOver = gameOver || playerWins();
+		}
+		if (gameOver) return;
+
+		
+		if (numberOfLettersSelected == 0) {
+			addPart();
+		}
+		
+		guessedLetter = generateNextGuess().toUpperCase();
+
+		// Found a word to guess, not a letter
+		if (guessedLetter.length > 1) {
+			var guessedWord = guessedLetter;
+			$("#computerGuess").hide();
+			if (confirm("Is your word " + guessedWord + "?")) {
+				for (index in guessedWord) {
+					$("#letterSpace" + index).html(guessedWord[index]);
+				}
+				alert('YOU LOSE! Get better, scrub!');
+			} else {
+				alert("Hmm, I think your word doesn't exist - CHEATER.");
+				return;
+			}
+		} else {
+			// Guess another letter
+			$("#computerGuess").html("Do you have any " + guessedLetter.toUpperCase() + "'s?");
+		}
+		
+	}
+
+
+	function addPart() {
+		$("#part" + nextPartNum).show();
+			nextPartNum++;
+	}
 
 	function playerWins() {
 		if (nextPartNum > MAX_NUM_PARTS) {
