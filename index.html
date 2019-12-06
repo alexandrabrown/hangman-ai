@@ -3,18 +3,27 @@
 		<title>
 			HANGMAN!
 		</title>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<!-- jQuery library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<!-- Popper JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<script> var $ = jQuery; </script>
 		<script src="hangman.js"></script>
 		<script src="admin.js"></script>
 	</head>
-	<body style="margin: auto; max-width: 500px; background: url(/images/background.jpg) center top no-repeat">
+	<body style="margin: auto; max-width: 550px; background: url(/images/background.jpg) center top no-repeat">
 		<div id="welcomeDiv">
-			Welcome to Hangman!
+		<h1>Welcome to Hangman!</h1>
 			Think of a word.
 			How many letters is it?
-			<input type="text" id="letterCount" />
-			<button id="submitLetterCount">Go</button>
+			<div class="input-group">
+				<input type="text" id="letterCount" class="form-control"/>&nbsp;
+				<button id="submitLetterCount" class="btn btn-primary btn-sm">Go</button>
+			</div>
 		</div>
 		<div id="hangmanGame">
 		<div>I will now try to guess your word...</div>
@@ -26,7 +35,7 @@
 				<img src="/images/torso.png" id="part4" style="display: none; position: absolute; left: 125px; top: 178px; z-index: 50; width: 138px; height: 192px;">
 				<img src="/images/legs.png" id="part5" style="display: none; position: absolute; left: 55px; top: 220px; z-index: 40; width: 264px; height: 302px;">
 			</div>
-			<div style="position: fixed; bottom: 30px; width: 100%;">
+			<div style="position: fixed; bottom: 25px; width: 100%;">
 				<div id="computerGuess">
 					
 				</div>
@@ -35,16 +44,12 @@
 				</div>
 				<br>
 				<div>
-					<button id="goFish">Go Fish</button>
-				</div>
-				<br>
-				<br>
-				<div>
-					<button onclick="location.reload()">Start Over</button>
+					<button id="goFish" class="btn btn-primary btn-sm">Go Fish</button>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button onclick="location.reload()" class="btn btn-secondary btn-sm">Start Over</button>
 				</div>
 			</div>
 		</div>
-		<br>
-		<footer style="position: fixed; bottom: 10px; width: 100%;">Made by Alexandra Brown and Tyler Finateri for the December 6, 2019 LAZ Hackathon</footer>
+		<footer style="position: fixed; bottom: 2px; width: 100%;">Made by Alexandra Brown and Tyler Finateri for the December 6, 2019 LAZ Hackathon</footer>
 	</body>
 </html>
