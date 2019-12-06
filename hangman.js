@@ -1,7 +1,7 @@
 var dictionary = [];
 var candidateSet = [];
 var alphabet = 'abcdefghijklmnopqrstuvwxyz';
-var knownLetters = "ele-----";
+var knownLetters = "";
 var guessedLetters = [];
 var CHAR_HYPEN = '-';
 var remainingLetters = alphabet;
@@ -20,6 +20,10 @@ function readFile(file) {
     });
 }
 
+function appendHyphenKnownLetters() {
+    knownLetters.push(CHAR_HYPEN);
+}
+
 function initCandidateSet(wordLength) {
     for (wordIndex in dictionary) {
         var word = dictionary[wordIndex].trim();
@@ -29,7 +33,7 @@ function initCandidateSet(wordLength) {
     }
 }
 
-function generateNewCandidateSet(knownLetters) {
+function generateNewCandidateSet() {
     var newCandidateSet = [];
     for (candidateWordIndex in candidateSet) {
         var candidateWord = candidateSet[candidateWordIndex];
@@ -56,7 +60,8 @@ function generateNewCandidateSet(knownLetters) {
     console.log(candidateSet);
 }
 
-function generateNextGuess(candidateSet) {
+function generateNextGuess() {
+    generateNewCandidateSet();
 	var letterFrequencyMap = {};
 	remainingLetters.split("").forEach(function(letter) {
 		letterFrequencyMap[letter] = 0;

@@ -16,6 +16,7 @@ $(document).ready(function() {
 			var letterSpace = $('<span>', {id: 'letterSpace' + i});
 			letterSpace.append(" _ ");
 			$("#guessingZone").append(letterSpace);
+			appendHyphenKnownLetters();
 		}
 
 
