@@ -64,7 +64,9 @@ $(document).ready(function() {
 	function playerWins() {
 		if (nextPartNum > MAX_NUM_PARTS) {
 			alert('You Win :D Good luck against V2.0');
+			return true;
 		}
+		return false;
 	}
 
 	function computerWins() {
