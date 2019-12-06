@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	$("#hangmanGame").hide();
-	$("#submitLetters").hide();
+	$("#goFish").hide();
+	var guessedLetter = '_';
 
 	$("#submitLetterCount").click(function() {
 		var numLetters = $("#letterCount").val();
@@ -8,7 +9,6 @@ $(document).ready(function() {
 			console.error("not an integer");
 			return;
 		}
-		initCandidateSet(numLetters);
 		$("#welcomeDiv").hide();
 
 		var i = 0;
@@ -21,12 +21,22 @@ $(document).ready(function() {
 
 
 		$("#hangmanGame").show();
+		initCandidateSet(numLetters);
+		goFish();
+		$("#goFish").show();
 	});
 
+	function goFish() {
+		guessedLetter = generateNextGuess().toUpperCase();
+		$("#computerGuess").html("Do you have any " + guessedLetter.toUpperCase() + "'s?");
+	}
+
+	$("#goFish").click(goFish);
 
 	$("#guessingZone").delegate("span", "click", function(event) {
-		var target = event.target;
-		var targetNum = $(target).attr('id').substring('letterSpace'.length);
+		var target = $(event.target);
+		var targetNum = target.attr('id').substring('letterSpace'.length);
 		console.log("space #" + targetNum + " clicked");
+		target.html(" " + guessedLetter + " ")
 	});
 });
