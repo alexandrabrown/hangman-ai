@@ -8,7 +8,7 @@
 		<script src="hangman.js"></script>
 		<script src="admin.js"></script>
 	</head>
-	<body style="margin: auto; max-width: 500px;">
+	<body style="margin: auto; max-width: 500px; background: url(/images/background.jpg) center top no-repeat">
 		<div id="welcomeDiv">
 			Welcome to Hangman!
 			Think of a word.
@@ -26,15 +26,17 @@
 				<img src="/images/torso.png" id="part4" style="display: none; position: absolute; left: 125px; top: 178px; z-index: 50; width: 138px; height: 192px;">
 				<img src="/images/legs.png" id="part5" style="display: none; position: absolute; left: 55px; top: 220px; z-index: 40; width: 264px; height: 302px;">
 			</div>
-			<div id="computerGuess">
-				
-			</div>
-			<div id="guessingZone">
+			<div style="position: fixed; bottom: 10px; width: 100%;">
+				<div id="computerGuess">
+					
+				</div>
+				<div id="guessingZone">
 
-			</div>
-			<br>
-			<div>
-				<button id="goFish">Go Fish</button>
+				</div>
+				<br>
+				<div>
+					<button id="goFish">Go Fish</button>
+				</div>
 			</div>
 		</div>
 	</body>
