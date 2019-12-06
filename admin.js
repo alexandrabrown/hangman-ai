@@ -66,6 +66,10 @@ $(document).ready(function() {
 			alert('You Win :D Good luck against V2.0');
 			return true;
 		}
+		if (candidateSet.length == 0) {
+			alert("Hmm, I think your word doesn't exist - CHEATER.");
+			return true;
+		}
 		return false;
 	}
 
