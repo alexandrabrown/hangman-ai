@@ -30,6 +30,7 @@ $(document).ready(function() {
 	function goFish() {
 		if (!gameOver) {
 			gameOver = computerWins();
+			gameOver = playerWins();
 		}
 		if (gameOver) return;
 
@@ -60,7 +61,9 @@ $(document).ready(function() {
 	});
 
 	function playerWins() {
-		alert('You Win :D Good luck against V2.0');
+		if (nextPartNum > MAX_NUM_PARTS) {
+			alert('You Win :D Good luck against V2.0');
+		}
 	}
 
 	function computerWins() {
