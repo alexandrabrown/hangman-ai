@@ -8,6 +8,7 @@ $(document).ready(function() {
 			console.error("not an integer");
 			return;
 		}
+		initCandidateSet(numLetters);
 		$("#welcomeDiv").hide();
 
 		var i = 0;
