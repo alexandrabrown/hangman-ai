@@ -12,10 +12,12 @@ $(document).ready(function() {
 		}
 		$("#welcomeDiv").hide();
 
+		$('#guessingZone').css({width: (numLetters * 70) + "px"});
 		var i = 0;
 		for(; i < numLetters; ++i) {
-			var letterSpace = $('<span>', {id: 'letterSpace' + i});
-			letterSpace.append(" _ ");
+			var letterSpace = $('<td>', {id: 'letterSpace' + i});
+			letterSpace.append("_");
+			letterSpace.css({fontSize: "70px", fontFamily: "Courier New"});
 			$("#guessingZone").append(letterSpace);
 			appendHyphenKnownLetters();
 		}
@@ -35,16 +37,15 @@ $(document).ready(function() {
 
 	$("#goFish").click(goFish);
 
-	$("#guessingZone").delegate("span", "click", function(event) {
+	$("#guessingZone").delegate("td", "click", function(event) {
 		if (checkGameOver()) {
 			return;
 		}
 
 		var target = $(event.target);
 		var targetNum = target.attr('id').substring('letterSpace'.length);
-		console.log("space #" + targetNum + " clicked");
-		if (target.html() === " _ ") {
-			target.html(" " + guessedLetter + " ")
+		if (target.html() === "_") {
+			target.html(guessedLetter)
 		}
 		insertLetterIntoKnownLetters(guessedLetter, targetNum);
 		numberOfLettersSelected++;
@@ -67,7 +68,9 @@ $(document).ready(function() {
 			$("#computerGuess").hide();
 			if (confirm("Is your word " + guessedWord + "?")) {
 				for (index in guessedWord) {
-					$("#letterSpace" + index).html(guessedWord[index]);
+					if ($("#letterSpace" + index).html() !== guessedWord[index]) {
+						$("#letterSpace" + index).html(guessedWord[index]);
+						$("#letterSpace" + index).css({color: "red"})					}
 				}
 				alert('YOU LOSE! Get better, scrub!');
 			} else {
@@ -93,7 +96,7 @@ $(document).ready(function() {
 			gameOver = gameOver || playerWins();
 			return gameOver;
 		}
-		return false;
+		return true;
 	}
 
 	function playerWins() {
@@ -109,8 +112,8 @@ $(document).ready(function() {
 	}
 
 	function computerWins() {
-		var numBlanksLeft = $('#guessingZone span').filter(function(index, element) { 
-			return element.innerHTML === " _ "; 
+		var numBlanksLeft = $('#guessingZone td').filter(function(index, element) { 
+			return element.innerHTML === "_"; 
 		}).length;
 		if (numBlanksLeft == 0 || guessedLetter.length > 1) {
 			gameOver = true;
